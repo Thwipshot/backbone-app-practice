@@ -1,4 +1,9 @@
 App.Views.Contact = Backbone.View.extend({
+
+  events: {
+    'click .delete': 'remove'
+  },
+
   template: _.template(
     $('#template-contact').html()
   ),
@@ -6,7 +11,7 @@ App.Views.Contact = Backbone.View.extend({
   $container: null,
 
   initialize: function(options) {
-    _.bindAll(this, 'render', 'insert');
+    _.bindAll(this, 'render', 'insert', 'remove');
 
     this.$container = options.$container;
 
@@ -22,5 +27,9 @@ App.Views.Contact = Backbone.View.extend({
 
   insert: function() {
     this.$container.append(this.$el);
+  },
+
+  remove: function() {
+    this.model.destroy();
   }
 });
