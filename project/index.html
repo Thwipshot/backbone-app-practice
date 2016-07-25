@@ -12,8 +12,18 @@
     <div id="display">
       <div class="listing">Houston, we have a problem.</div>
     </div>
+    <script id="template-contact" type="template">
+      <div class="contact">
+        <h2><%-firstName%><% if (lastName) { %> <%-lastName%><% } %></h2>
+        <a href="mailto:<%-email%>"><%-email%></a><br />
+        <a href="tel:<%-phoneNumber%>"><%-phoneNumber%></a><br />
+        <button class="delete">Delete</button>
+      </div>
+    </script>
   </body>
   <script src="scripts/main.js"></script>
   <script src="scripts/models/contact.js"></script>
   <script src="scripts/collections/contact.js"></script>
+  <script src="scripts/views/contact.js"></script>
+  <script src="scripts/views/directory.js"></script>
 </html>

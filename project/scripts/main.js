@@ -1,7 +1,9 @@
 var App = {
   Models: {},
   Collections: {},
-  Contacts: null
+  Views: {},
+  Contacts: null,
+  Directory: null
 };
 
 $(function() { // Run this code when the DOM is ready
@@ -23,21 +25,13 @@ $(function() { // Run this code when the DOM is ready
     email: 'rupertstyx@example.com'
   });
 
-  App.Contacts.add({});
-
-  var contactListing = '';
-  App.Contacts.each(function(contact) {
-    contactListing += "<div>" +
-    contact.get('firstName') + " " +
-    contact.get('lastName') + " ";
-
-    if (contact.isValid()) {
-      contactListing += "(valid)";
-    } else {
-      contactListing += "(invalid)";
-    }
-
-    contactListing += "</div>";
+  App.Directory = new App.Views.Directory({
+    el: $('#display')
   });
-  $('#display').html(contactListing);
+
+  App.Directory.render();
+
+  App.Contacts.on('add remove', function() {
+    App.Directory.render();
+  })
 });
