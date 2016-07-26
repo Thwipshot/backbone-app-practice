@@ -3,7 +3,9 @@ var App = {
   Collections: {},
   Views: {},
   Contacts: null,
-  Directory: null
+  Directory: null,
+  Routers: {},
+  Browser: null
 };
 
 $(function() { // Run this code when the DOM is ready
@@ -15,7 +17,9 @@ $(function() { // Run this code when the DOM is ready
   });
 
   App.Contacts = new
+
   App.Collections.Contact();
+
   App.Contacts.add(window.tom);
 
   App.Contacts.add({
@@ -34,4 +38,7 @@ $(function() { // Run this code when the DOM is ready
   App.Contacts.on('add remove', function() {
     App.Directory.render();
   })
+
+  App.Browser = new App.Routers.Contact;
+  Backbone.history.start();
 });

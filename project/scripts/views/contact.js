@@ -30,6 +30,7 @@ App.Views.Contact = Backbone.View.extend({
   },
 
   remove: function() {
+    App.Browser.navigate('contacts/remove/' + this.model.cid);
     this.model.destroy();
   }
 });

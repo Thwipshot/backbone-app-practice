@@ -6,7 +6,7 @@ App.Views.Directory = Backbone.View.extend({
   },
 
   initialize: function() {
-    _.bindAll(this, 'render', 'addForm', 'addSubmit');
+    _.bindAll(this, 'render', 'addForm', 'addFormHide', 'addSubmit');
   },
 
   render: function() {
@@ -23,7 +23,13 @@ App.Views.Directory = Backbone.View.extend({
   },
 
   addForm: function() {
+    App.Browser.navigate('contacts/add');
     this.$('.controls form').show().find('input.firstName').focus();
+  },
+
+  addFormHide: function() {
+    App.Browser.navigate('contacts');
+    this.$('.controls form').hide();
   },
 
   addSubmit: function(event) {
@@ -39,7 +45,7 @@ App.Views.Directory = Backbone.View.extend({
 
     if (newContact.isValid()) {
       App.Contacts.add(newContact);
-      $form.hide();
+      this.addFormHide();
       $('input[type=text]', $form).val('').blur();
     } else {
       alert(newContact.validationError);
